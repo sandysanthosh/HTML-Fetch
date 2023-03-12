@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fetch API Example</title>
+</head>
+<body>
+  <h1>Fetch API Example</h1>
+
+  <ul id="posts-list"></ul>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.6.2/fetch.min.js"></script>
+  <script>
+    const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(posts => {
+        const postsList = document.getElementById('posts-list');
+        posts.forEach(post => {
+          const li = document.createElement('li');
+          li.textContent = `${post.id}: ${post.title}`;
+          postsList.appendChild(li);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  </script>
+</body>
+</html>
